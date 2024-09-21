@@ -89,7 +89,7 @@ export class LoginPage implements OnInit {
     }
     if (this.loginForm.value.password.length < 8) { 
       await loading.dismiss();
-      this.helperService.showAlert("Credenciales incorrectas", "Error");
+      this.helperService.showAlert("Formulario invalido", "Error");
       return;
     }
   
