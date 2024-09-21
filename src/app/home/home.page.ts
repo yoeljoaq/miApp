@@ -15,15 +15,29 @@ import { HelperService } from '../services/helper.service';
 
 
 export class HomePage implements OnInit, OnDestroy{
+  
+  username: string = 'guest';
 
   networkListener: PluginListenerHandle;
   status:boolean;
+  loaded: boolean = false;
+
+  
 
   constructor(public authService:AuthenticationService,public route:Router,public helper:HelperService,
-    public ngZone: NgZone) {
+    private ngZone: NgZone) {
 
   }
-  async ngOnInit() {
+  async ngOnInit(){
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      this.username = storedUsername;
+    }
+
+    setTimeout(() => {
+      this.loaded = true; 
+    }, 3000); 
+    
     this.networkListener = await Network.addListener('networkStatusChange', status => {
       console.log('Network status changed', status);
       this.ngZone.run(() =>{

@@ -22,7 +22,7 @@ export class ResetPasswordPage implements OnInit {
   ngOnInit() {}
 
   async resetPassword() {
-
+ 
     this.emailNotFound = false;
     if (!this.email) {
 

@@ -54,32 +54,35 @@ export class SignupPage implements OnInit {
     const loading = await this.helperService.showLoading("Cargando...");
 
     try {
-      if (this.regForm?.valid) {
-        const user = await this.authService.registerUser(
-          this.regForm.value.email,
-          this.regForm.value.password
-        );
-        if (user) {
-          await this.helperService.showToast("Usuario registrado exitosamente");
-          loading.dismiss();
-          // Redirigir al usuario a su perfil de datos después de registrarse
-          this.router.navigate(['/home']);
+        if (this.regForm?.valid) {
+            const user = await this.authService.registerUser(
+                this.regForm.value.email,
+                this.regForm.value.password
+            );
+            if (user) {
+                await this.helperService.showToast("Usuario registrado exitosamente");
+                
+            
+                localStorage.setItem('username', this.regForm.value.fullname);
+
+                loading.dismiss();
+                this.router.navigate(['/home']);
+            }
+        } else {
+            await this.helperService.showAlert("Formulario inválido", "Error");
+            loading.dismiss();
         }
-      } else {
-        await this.helperService.showAlert("Formulario inválido", "Error");
-        loading.dismiss();
-      }
     } catch (error: any) {
-      if (error.code == 'auth/invalid-email') {
-        await loading.dismiss();
-        await this.helperService.showAlert("Error en el formato del correo", "Error");
-      } else {
-        console.error(error);
-        await loading.dismiss();
-        await this.helperService.showAlert("El correo ya está registrado", "Error");
-      }
+        if (error.code == 'auth/invalid-email') {
+            await loading.dismiss();
+            await this.helperService.showAlert("Error en el formato del correo", "Error");
+        } else {
+            console.error(error);
+            await loading.dismiss();
+            await this.helperService.showAlert("El correo ya está registrado", "Error");
+        }
     }
-  }
+}
 
   togglePassword(): void {
     this.showPassword = !this.showPassword;
