@@ -1,28 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-button (click)="logout()">Cerrar Sesión</ion-button>
-    
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
   
-  </ion-header>
-  <ion-title>
+  
+  <ion-title style="text-align: center; margin-top: 16px;">
     Bienvenido, {{username}}!  
-</ion-title>
+  </ion-title>
 
-  <div id="container">
+  
+  <div id="connection-status" style="text-align: center; margin-bottom: 16px;">
     You are 
     <ion-text *ngIf="status" color="success">Online</ion-text> 
     <ion-text *ngIf="status === false" color="danger">Offline</ion-text>
   </div>
 
-  <div id="container">
-    <strong>Welcome to iTakeYouApp!</strong>
-    
-    
+  <div id="map" style="width: 100%; height: 50vh; margin-bottom: 16px;"></div> 
+
+ 
+  <div id="button-container" style="display: flex; flex-direction: column; gap: 10px; padding: 0 16px;">
     <div *ngIf="!loaded">
       <ion-button class="conductor skeleton-button" expand="full">
         <ion-skeleton-text [animated]="true" style="width: 100%; height: 40px"></ion-skeleton-text>
@@ -31,11 +30,10 @@
         <ion-skeleton-text [animated]="true" style="width: 100%; height: 40px"></ion-skeleton-text>
       </ion-button>
     </div>
-    
-    
     <div *ngIf="loaded">
-      <ion-button class="conductor" [routerLink]="['/driver']" expand="full">Disponibilizar</ion-button>
-      <ion-button class="pasajero" [routerLink]="['/passenger']" expand="full">Solicitar</ion-button>
+      <ion-button class="conductor" expand="full">Disponibilizar</ion-button>
+      <ion-button class="pasajero" expand="full">Solicitar</ion-button>
     </div>
   </div>
 </ion-content>
+

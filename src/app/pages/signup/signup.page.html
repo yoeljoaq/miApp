@@ -5,11 +5,13 @@
      </ion-button>
   
   </ion-toolbar>
+  <ion-header class="header">
+    
+      <ion-title class="title">Crear Cuenta</ion-title>
+
+  </ion-header>
   
-    <div class="header">
-       <ion-title class="title">Crear Cuenta</ion-title>
-       
-    </div>
+  
 
   
 
@@ -47,7 +49,7 @@
           El campo no debe estar vacío
         </ion-text>
         <ion-text *ngIf="errorControl['password'].errors?.pattern">
-          Contraseña no valida, debe tener 8 caracteres, una mayúscula y un número como mínimo.
+          Contraseña no valida. Debe tener: 8 caracteres, una mayúscula y un número como mínimo.
         </ion-text>
       </div>
 

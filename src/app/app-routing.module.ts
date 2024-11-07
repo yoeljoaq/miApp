@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/compat/auth-guard';
+
+const redireccionarlogin = () => redirectUnauthorizedTo(['/login']);
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'home',canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redireccionarlogin},
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
@@ -27,8 +31,7 @@ const routes: Routes = [
     path: 'reset-password',
     loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   },
-
-
+  
 ];
 
 @NgModule({
@@ -38,3 +41,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

@@ -41,7 +41,11 @@ export class ResetPasswordPage implements OnInit {
         console.log(error);
         if (error.code === 'auth/user-not-found') {
           this.emailNotFound = true;
-        } else {
+        } 
+        if (error.code === 'auth/invalid-email') {
+          this.helperService.showAlert("El correo ingresado no es válido", "Error");
+        }
+          else {
           console.log(error);
         }
       });
