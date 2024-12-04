@@ -1,15 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
 })
-export class LandingPage implements OnInit {
+export class LandingPage {
+  constructor(
+    private loadingCtrl: LoadingController,
+    private router: Router
+  ) {}
 
-  constructor() { }
+  async performAction() {
+    
+    const loading = await this.loadingCtrl.create({
+      message: 'Cargando...',
+      spinner: 'circles', 
+    });
+    
+    await loading.present();
 
-  ngOnInit() {
-  }
-
+    
+    setTimeout(async () => {
+      await loading.dismiss(); 
+      console.log('Proceso completado');
+      
+      
+      this.router.navigate(['/login']);
+    }, 1500); 
+}
 }

@@ -1,2 +1,27 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+// src/theme/variables.scss
+
+:root {
+    --ion-color-primary: #4a90e2;  // Azul principal
+    --ion-color-primary-rgb: 74, 144, 226;
+    --ion-color-primary-contrast: #ffffff;  // Color de texto en el botón
+    --ion-color-secondary: #007acc;  // Azul oscuro
+    --ion-color-tertiary: #005fa2;  // Azul más oscuro
+    --ion-color-light: #e3f2fd;  // Azul claro
+    --ion-color-medium: #0277bd;  // Azul intermedio
+    --ion-color-dark: #003c8f;  // Azul muy oscuro
+    
+    --ion-background-color: #f0f4f8;  // Fondo claro
+    --ion-text-color: #333333;  // Color de texto oscuro
+    
+    // Colores para botones
+    --button-background: var(--ion-color-primary);
+    --button-text-color: var(--ion-color-primary-contrast);
+    
+    // Otros colores para la interfaz
+    --input-background: var(--ion-color-light);
+    --input-border: var(--ion-color-medium);
+    --input-text-color: var(--ion-color-dark);
+  }
+  

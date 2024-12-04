@@ -5,32 +5,42 @@ import { Router } from '@angular/router';
 import { Network } from '@capacitor/network';
 import { PluginListenerHandle } from '@capacitor/core';
 import { HelperService } from '../services/helper.service';
-
+import { WeatherService } from '../weather.service'; 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
-
 export class HomePage implements OnInit, OnDestroy {
   username: string = 'guest';
   networkListener: PluginListenerHandle;
   status: boolean = true; 
   loaded: boolean = false;
   map: L.Map;
+  weatherData: any; 
+  city = 'Santiago'; 
 
-  constructor(public authService: AuthenticationService, public route: Router, public helper: HelperService, private ngZone: NgZone) {}
+  constructor(
+    public authService: AuthenticationService,
+    public route: Router,
+    public helper: HelperService,
+    private ngZone: NgZone,
+    private weatherService: WeatherService 
+  ) {}
 
   async ngOnInit() {
+    
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.username = storedUsername;
     }
 
+    
     setTimeout(() => {
       this.loaded = true; 
     }, 3000); 
 
+    
     this.networkListener = await Network.addListener('networkStatusChange', status => {
       this.ngZone.run(() => {
         this.changeStatus(status);
@@ -41,21 +51,39 @@ export class HomePage implements OnInit, OnDestroy {
 
     
     this.initializeMap();
+    this.getWeather();
+  }
+  getCapitalizedDescription(): string {
+    const description = this.weatherData?.weather[0]?.description || '';
+    return description.charAt(0).toUpperCase() + description.slice(1).toLowerCase();
   }
 
   initializeMap() {
-    this.map = L.map('map').setView([-33.4489, -70.6693], 13); 
+    this.map = L.map('map').setView([-33.4489, -70.6693], 13); // Centro en Santiago
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
 
+   
     const startMarker = L.marker([-33.4489, -70.6693]).addTo(this.map).bindPopup('Inicio').openPopup();
     const endMarker = L.marker([-33.4500, -70.6700]).addTo(this.map).bindPopup('Destino').openPopup();
   }
 
   changeStatus(status) {
     this.status = status?.connected;
+  }
+
+  getWeather() {
+    this.weatherService.getWeather(this.city).subscribe(
+      data => {
+        this.weatherData = data;
+        console.log(this.weatherData); 
+      },
+      error => {
+        console.error('Error al obtener el clima', error);
+      }
+    );
   }
 
   ngOnDestroy(): void {
@@ -70,4 +98,3 @@ export class HomePage implements OnInit, OnDestroy {
     }
   }
 }
-

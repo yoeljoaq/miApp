@@ -35,5 +35,23 @@
       <ion-button class="pasajero" expand="full">Solicitar</ion-button>
     </div>
   </div>
+  <div *ngIf="weatherData">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ weatherData.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Temperatura:</strong> {{ weatherData.main.temp }} °C</p>
+        <p><strong>Descripción:</strong> {{ getCapitalizedDescription() }}</p>
+        <p><strong>Humedad:</strong> {{ weatherData.main.humidity }} %</p>
+        <p><strong>Viento:</strong> {{ weatherData.wind.speed }} m/s</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+  <div *ngIf="!weatherData">
+    <p>Cargando datos del clima...</p>
+  </div>
+
 </ion-content>
 

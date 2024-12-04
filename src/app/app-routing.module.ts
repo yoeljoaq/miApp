@@ -17,6 +17,35 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'signup',
+    redirectTo: 'signup',
+    pathMatch: 'full'
+  },
+  {
+    path: 'reset-password',
+    redirectTo: 'reset-password',
+    pathMatch: 'full'
+  },
+  {
+    path: 'landing',
+    redirectTo: 'landing',
+    pathMatch: 'full'
+  },
+
+  {
+    path: '**',
+    redirectTo: 'e404',
+    pathMatch: 'full'
+  },
+
+
+
+  {
+    path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
@@ -31,6 +60,11 @@ const routes: Routes = [
     path: 'reset-password',
     loadChildren: () => import('./pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   },
+  {
+    path: 'e404',
+    loadChildren: () => import('./pages/e404/e404.module').then( m => m.E404PageModule)
+  },
+
   
 ];
 
