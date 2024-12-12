@@ -21,6 +21,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'agregarvehiculo',
+    redirectTo: 'agregarvehiculo',
+    pathMatch: 'full'
+  },
+  {
+    path: 'vervehiculo',
+    redirectTo: 'vervehiculo',
+    pathMatch: 'full'
+  },
+  {
     path: 'signup',
     redirectTo: 'signup',
     pathMatch: 'full'
@@ -64,6 +74,16 @@ const routes: Routes = [
     path: 'e404',
     loadChildren: () => import('./pages/e404/e404.module').then( m => m.E404PageModule)
   },
+  {
+    path: 'agregarvehiculo',canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redireccionarlogin},
+    loadChildren: () => import('./pages/agregarvehiculo/agregarvehiculo.module').then( m => m.AgregarvehiculoPageModule)
+  },
+  {
+    path: 'vervehiculo',canActivate:[AngularFireAuthGuard],data:{authGuardPipe:redireccionarlogin},
+    loadChildren: () => import('./pages/vervehiculo/vervehiculo.module').then( m => m.VervehiculoPageModule)
+  },
+
+
 
   
 ];

@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/agregarvehiculo"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titulo"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" class="titulo">Ver</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item *ngFor="let vehiculo of vehiculos; let i = index">
+      <ion-thumbnail slot="start">
+        <ion-icon name="car-sport" size="large"></ion-icon>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ vehiculo.patente }}</h2>
+        <p>Tipo: {{ vehiculo.tipoVehiculo }}</p>
+        <p>Conductor: {{ vehiculo.conductor }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="pedirVehiculo(vehiculo)">Pedir</ion-button>
+        <ion-button color="danger" (click)="confirmarEliminarVehiculo(i)">Eliminar</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

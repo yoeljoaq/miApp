@@ -1,0 +1,57 @@
+ion-header {
+    --ion-background-color: #1a1a1a; /* Color del encabezado */
+  }
+  
+  ion-title {
+    color: #fff; /* Color del texto del título */
+  }
+  
+  ion-content {
+    --ion-background-color: #121212; /* Color del fondo del contenido */
+    color: #fff; /* Color del texto del contenido */
+  }
+  
+  ion-list {
+    --ion-background-color: transparent; /* Color de fondo de la lista */
+  }
+  
+  ion-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease; /* Agregamos transición al efecto hover */
+  }
+  
+  ion-item:hover {
+    transform: translateX(10px); /* Desplazamiento horizontal al pasar el ratón */
+  }
+  
+  ion-thumbnail {
+    --border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-right: 10px;
+  }
+  
+  ion-thumbnail ion-icon {
+    font-size: 2em;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+  }
+  
+  ion-label {
+    color: #fff;
+  }
+  
+  ion-buttons ion-button {
+    color: #fff;
+  }
+  
+  ion-button {
+    --background: #5260ff;
+  }
+  
+  
+  
+  
+    

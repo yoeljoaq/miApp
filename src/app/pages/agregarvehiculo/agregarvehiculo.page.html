@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>agregarvehiculo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" class="titulo">Agregar Vehiculo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Nombre Conductor</ion-label>
+      <ion-input type="text" [(ngModel)]="conductor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">N° Patente</ion-label>
+      <ion-input type="text" [(ngModel)]="patente"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tipo de Vehículo</ion-label>
+      <ion-select [(ngModel)]="tipoVehiculo">
+        <ion-select-option value="van">Van</ion-select-option>
+        <ion-select-option value="Sedan">Sedan</ion-select-option>
+        <ion-select-option value="deportivo">Deportivo</ion-select-option>
+        <ion-select-option value="SUV">SUV</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+   
+
+    <ion-button expand="full" (click)="agregarVehiculo()">Agregar Vehículo</ion-button>
+  </ion-list>
+
+
+</ion-content>
+
+
